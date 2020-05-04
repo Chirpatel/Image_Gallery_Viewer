@@ -10,6 +10,8 @@ input.addEventListener("keyup", function (event) {
 
 
 baseurl = "https://api.unsplash.com/"
+var client_id ="X5xEy8z0z5cLE6s0rW8DRV442DqfB2X94QkD66DQEBY"
+//var client_id = "jiioUkhRFVmCpHn9wTX_C5mqDS_2AQMdyUXwj-yKfJs"
 
 async function call(url, params) {
     var resp = await axios.get(`${url}`, {
@@ -20,7 +22,7 @@ async function call(url, params) {
 }
 async function start() {
     var response = await call(baseurl + 'photos/random', {
-        client_id: "jiioUkhRFVmCpHn9wTX_C5mqDS_2AQMdyUXwj-yKfJs",
+        client_id: client_id,
         count: 30,
     })
     printr(response);
@@ -47,7 +49,7 @@ async function search() {
         var resp = await call(baseurl + `search/collections`, {
             page: i,
             query: s,
-            client_id: "jiioUkhRFVmCpHn9wTX_C5mqDS_2AQMdyUXwj-yKfJs",
+            client_id: client_id,
         });
         printsearch(resp);
     }
