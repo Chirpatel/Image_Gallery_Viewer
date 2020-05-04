@@ -55,7 +55,7 @@ async function search() {
         var resp = await call(baseurl + `search/collections`, {
             page: i,
             per_page: 30,
-            order_by: popular,
+            order_by: "popular",
             query: s,
             client_id: client_id,
 
@@ -69,7 +69,9 @@ function printsearch(response) {
         var elem = document.getElementById('base');
         var node = document.createElement('div');
         node.classList = "card";
-        node.innerHTML = `<img class="card-img-top" src="${response['data']['results'][i].cover_photo.urls.small}" alt="Card image cap">`
+        node.innerHTML = `<img class="card-img-top" src="${response['data']['results'][i].cover_photo.urls.small}" alt="Card image cap"><div class="text-block">
+        <a target="_blank" href="${response['data']['results'][i].cover_photo.urls.raw}.jpeg" download="file"><i style="font-size: 3em; color: white;" class="fas fa-arrow-circle-down"></i></a>
+      </div>`
         elem.appendChild(node);
     }
 }
