@@ -34,3 +34,19 @@
     box-shadow: 0 0 20px #000000;;
     transform: scale(1.02);
 }
+.card-img-top{
+    position: relative;
+}
+.text-block {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+
+  }
+.text-block:hover{
+    box-shadow: 0 0 20px #000000;;
+    transform: scale(1.02);
+} 

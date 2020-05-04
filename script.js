@@ -17,11 +17,13 @@ async function call(url, params) {
     var resp = await axios.get(`${url}`, {
         params: params
     });
-    //console.log(resp);
+    console.log(resp);
     return resp;
 }
-async function start() {
+async function start(i) {
     var response = await call(baseurl + 'photos/random', {
+        page: i,
+        order_by: "popular",
         client_id: client_id,
         count: 30,
     })
@@ -33,23 +35,30 @@ function printr(response) {
     for (let i = 0; i < response['data'].length; i++) {
         var elem = document.getElementById('base');
         var node = document.createElement('div');
+
         node.classList = "card";
-        node.innerHTML = `<img class="card-img-top" src="${response['data'][i].urls.small}" alt="Card image cap">`
+        node.innerHTML = `<img class="card-img-top" src="${response['data'][i].urls.small}" alt="Card image cap"><div class="text-block">
+        <a target="_blank" href="${response['data'][i].urls.raw}.jpeg" download="file"><i style="font-size: 3em; color: white;" class="fas fa-arrow-circle-down"></i></a>
+      </div>`
         elem.appendChild(node);
     }
 }
 
-start();
+start(1);
+start(2);
 
 async function search() {
     var s = document.getElementById("search").value;
     //console.log(s);
     document.getElementById('base').innerHTML = ""
-    for (let i = 1; i <= 3; i++) {
+    for (let i = 1; i <= 2; i++) {
         var resp = await call(baseurl + `search/collections`, {
             page: i,
+            per_page: 30,
+            order_by: popular,
             query: s,
             client_id: client_id,
+
         });
         printsearch(resp);
     }
@@ -64,4 +73,3 @@ function printsearch(response) {
         elem.appendChild(node);
     }
 }
-data.results
